@@ -19,11 +19,12 @@ TARGET = $$qtLibraryTarget(vncproxy)
 DESTDIR = plugins/platforms
 
 PROJECT_ROOT = $$clean_path( $$PWD/../src )
+PROJECT_BUILD_ROOT = $$clean_path( $$PWD/../../build/src )
 
 INCLUDEPATH *= $${PROJECT_ROOT}
 DEPENDPATH *= $${PROJECT_ROOT}
 
-LIBS *= -L$${PROJECT_ROOT}/lib -lvncgl
+LIBS *= -L$${PROJECT_BUILD_ROOT}/lib -lvncgl
 
 SOURCES += \
     VncProxyPlugin.cpp

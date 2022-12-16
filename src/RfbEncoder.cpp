@@ -86,7 +86,11 @@ void RfbEncoder::encode( const QImage& image, const QRect& rect )
 
         qCDebug( logEncoding ) << "JPEG:" << "quality:" << m_quality
             << "w:" << image.width() << "h:" << image.height()
+#if QT_VERSION < QT_VERSION_CHECK( 5, 10, 0 )
+            << "bytes:" << image.bytesPerLine() * image.height()
+#else
             << "bytes:" << image.sizeInBytes()
+#endif
             << "->" << m_encoder->encodedData().size()
             << "ms: elapsed" << ms;
     }

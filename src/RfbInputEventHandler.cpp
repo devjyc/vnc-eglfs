@@ -148,8 +148,13 @@ void Rfb::handlePointerEvent( const QPointF& pos, quint8 buttonMask, QWindow* wi
             button = static_cast< Qt::MouseButton >( modified );
         }
 
+#if QT_VERSION < QT_VERSION_CHECK( 5, 10, 0 )
+        QWindowSystemInterface::handleMouseEvent(
+            window, pos, pos, buttons, keyboardModifiers );
+#else
         QWindowSystemInterface::handleMouseEvent(
             window, pos, pos, buttons, button, eventType, keyboardModifiers );
+#endif
     }
 }
 
